@@ -28,11 +28,9 @@ namespace PubSub
             senderTask = Task.Run(Sender);
         }
 
-        public async Task<ISession> CreateSessionAsync(H.HttpContext context)
+        public void Add(IServerSession session)
         {
-            var session = await factory.CreateSessionAsync(context);
             session.ReceiveEvent += OnMessage;
-            return session;
         }
 
         void OnMessage(ISession session, Message m)
@@ -75,12 +73,13 @@ namespace PubSub
             list.Add(sub.Topic);
         }
 
-        List<string> GetSubscriptions(ISession session)
+        void GetSubscriptions(ISession session)
         {
             List<string> list;
-            if (perSessionSubs.TryGetValue(session, out list))
-                return list;
-            return null;
+            if (!perSessionSubs.TryGetValue(session, out list))
+                list = new List<string>();
+            var response = new Subscriptions(list);
+            session.SendAsync(response);
         }
 
         async Task Sender()

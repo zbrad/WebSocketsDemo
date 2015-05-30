@@ -29,7 +29,7 @@ namespace Sessions.Messages
 
             JToken token;
             Type type;
-            if (o.TryGetValue("$_type", out token))
+            if (o.TryGetValue("$type", out token))
                 type = Type.GetType(token.Value<string>());
             else
             {

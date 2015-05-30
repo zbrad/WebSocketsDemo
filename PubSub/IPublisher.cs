@@ -2,11 +2,18 @@
 using System.Threading.Tasks;
 using Sessions;
 using H = Microsoft.AspNet.Http;
+using Microsoft.AspNet.Hosting;
+using System.Threading;
 
 namespace PubSub
 {
     public interface IPublisher
     {
-        Task<ISession> CreateSessionAsync(H.HttpContext context);
+        void Add(IServerSession session);
+    }
+
+    public interface IPublisherSession
+    {
+        Task WaitAsync(CancellationToken token);
     }
 }

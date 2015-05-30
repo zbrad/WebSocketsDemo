@@ -10,6 +10,12 @@ namespace WebSocketsDemo.Controllers
     {
         public IActionResult Index()
         {
+            var provider = this.Resolver;
+            return View();
+        }
+
+        public IActionResult OldIndex()
+        {
             return View();
         }
 

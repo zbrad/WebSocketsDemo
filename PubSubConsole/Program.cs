@@ -9,20 +9,23 @@ using Microsoft.Framework.ConfigurationModel.Json;
 using Microsoft.Framework.DependencyInjection;
 using System.Threading;
 using PubSub;
+using Nito.AsyncEx;
 
 namespace PubSubConsole
 {
     public class Program
     {
         IServiceProvider provider;
+        AsyncAutoResetEvent waitForMessage = new AsyncAutoResetEvent();
 
         public void Main(string[] args)
         {
             ServiceCollection services = new ServiceCollection();
             services.AddSessions();
             provider = services.BuildServiceProvider();
-
             RunPub().Wait();
+            Console.WriteLine("[Press enter to exit]");
+            Console.ReadLine();
         }
 
         async Task RunPub()
@@ -37,20 +40,42 @@ namespace PubSubConsole
                 var m = new GetSubscriptions();
                 await session.SendAsync(m);
 
+
                 // now wait for a response
-                while (!gotResponse)
-                    await Task.Delay(1000);
+                await waitForMessage.WaitAsync();
+
+                // test that we got a subscriptions message back (or other)
+                if (lastMessage == null)
+                {
+                    Console.WriteLine("received message signaled, but lastMessage is null");
+                    return;
+                }
+
+                if (lastMessage is Subscriptions)
+                {
+                    var subs = (Subscriptions)lastMessage;
+                    if (subs.List.Count == 0)
+                        Console.WriteLine("Current subscription list is empty");
+                    else
+                    {
+                        Console.WriteLine("Current subscriptions are:");
+                        foreach (var s in subs.List)
+                            Console.WriteLine(s);
+                    }
+                }
+                else
+                {
+                    Console.WriteLine("Received unexpected message: " + lastMessage.GetType().Name);
+                }
             }
         }
 
-        bool gotResponse = false;
+        Message lastMessage;
 
         private void Session_ReceiveEvent(ISession session, Message m)
         {
-            if (m is Subscriptions)
-            {
-                gotResponse = true;
-            }
+            lastMessage = m;
+            waitForMessage.Set();
         }
     }
 }

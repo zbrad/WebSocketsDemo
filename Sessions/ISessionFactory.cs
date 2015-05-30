@@ -6,6 +6,7 @@ using Microsoft.Framework.ConfigurationModel;
 using Sessions.Messages;
 using System.Collections.Generic;
 using H = Microsoft.AspNet.Http;
+
 namespace Sessions
 {
     public interface ISessionFactory
@@ -14,6 +15,5 @@ namespace Sessions
         Exception LastException { get; }
         ISession GetSession(string id);
         Task SendAsync(Message m, List<ISession> list);
-        Task<ISession> CreateSessionAsync(H.HttpContext context);
     }
 }

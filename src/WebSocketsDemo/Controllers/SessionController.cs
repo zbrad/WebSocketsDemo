@@ -10,24 +10,21 @@ using PubSub;
 using System.Net.Http;
 using Sessions.Messages;
 using Microsoft.AspNet.Mvc;
+using Microsoft.AspNet.Hosting;
 
 namespace WebSocketsDemo.Controllers
 {
     internal class SessionWaiter : IActionResult
     {
-        IPublisher publisher;
+        IPublisherSession session;
 
-        public SessionWaiter(IPublisher publisher)
+        public SessionWaiter(IPublisherSession session)
         {
-            this.publisher = publisher;
+            this.session = session;
         }
 
         public async Task ExecuteResultAsync(ActionContext context)
         {
-            if (publisher == null)
-                return;
-
-            var session = await publisher.CreateSessionAsync(context.HttpContext);
             await session.WaitAsync(CancellationToken.None);
         }
     }
@@ -35,16 +32,17 @@ namespace WebSocketsDemo.Controllers
     [Route("[controller]")]
     public class SessionController : Controller
     {
-        IPublisher publisher;
-        public SessionController(IPublisher publisher)
+        IPublisherSession session;
+
+        public SessionController(IPublisherSession session)
         {
-            this.publisher = publisher;
+            this.session = session;
         }
 
         [HttpGet]
         public IActionResult Get()
         {
-            return new SessionWaiter(this.publisher);
+            return new SessionWaiter(this.session);
         }
     }
 }

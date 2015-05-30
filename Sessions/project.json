@@ -1,31 +1,29 @@
-﻿{
-  "version": "1.0.0-*",
-  "description": "",
-  "authors": [ "" ],
-  "tags": [ "" ],
-  "projectUrl": "",
-  "licenseUrl": "",
+{
+    "version": "1.0.0-*",
+    "description": "",
+    "authors": [ "" ],
+    "tags": [ "" ],
+    "projectUrl": "",
+    "licenseUrl": "",
 
-  "dependencies": {
+    "dependencies": {
 
-    // framework
-    "Microsoft.Framework.ConfigurationModel": "1.0.0-beta4",
-    "Microsoft.Framework.DependencyInjection": "1.0.0-beta4",
+        // framework
+        "Microsoft.Framework.ConfigurationModel": "1.0.0-beta4",
+        "Microsoft.Framework.DependencyInjection": "1.0.0-beta4",
 
-    // websockets
+        // websockets
         "Microsoft.AspNet.WebSockets.Server": "1.0.0-beta4",
         "Microsoft.AspNet.WebSockets.Client": "1.0.0-beta4",
 
-    // nito framework
-    "Nito.AsyncEx.Concurrent (Dnx)": "1.0.0-*",
-    "Nito.AsyncEx (Dnx)": "1.0.0-*",
-    "Nito.AsyncEx.Enlightenment (Dnx)": "1.0.0-*",
+        // json
+        "Newtonsoft.Json": "7.0.1-beta3",
+        "Nito.AsyncEx": "3.0.1-pre",
+        "Microsoft.AspNet.Http.Core": "1.0.0-beta4",
+        "Microsoft.AspNet.Mvc": "6.0.0-beta4"
+    },
 
-    // json
-    "Newtonsoft.Json": "7.0.1-beta3",
-  },
-
-  "frameworks": {
-    "dnx451": { }
-  }
+    "frameworks": {
+        "dnx451": { }
+    }
 }

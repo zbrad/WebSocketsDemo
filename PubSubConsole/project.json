@@ -1,21 +1,22 @@
 {
-  "version": "1.0.0-*",
-  "description": "",
-  "authors": [ "" ],
-  "tags": [ "" ],
-  "projectUrl": "",
-  "licenseUrl": "",
+    "version": "1.0.0-*",
+    "description": "",
+    "authors": [ "" ],
+    "tags": [ "" ],
+    "projectUrl": "",
+    "licenseUrl": "",
 
-  "dependencies": {
-    "PubSub": "1.0.0-*",
-    "Microsoft.Framework.ConfigurationModel.Json": "1.0.0-beta4"
-  },
+    "dependencies": {
+        "PubSub": "1.0.0-*",
+        "Microsoft.Framework.ConfigurationModel.Json": "1.0.0-beta4",
+        "Nito.AsyncEx": "3.0.1-pre"
+    },
 
-  "commands": {
-    "PubSubConsole": "PubSubConsole"
-  },
+    "commands": {
+        "PubSubConsole": "PubSubConsole"
+    },
 
-  "frameworks": {
-    "dnx451": { }
-  }
+    "frameworks": {
+        "dnx451": { }
+    }
 }
