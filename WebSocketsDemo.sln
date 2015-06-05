@@ -6,12 +6,14 @@ MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{0C652EC2-33D8-4CAA-8781-D399191E6710}"
 	ProjectSection(SolutionItems) = preProject
 		global.json = global.json
+		LICENSE = LICENSE
+		ReadMe.md = ReadMe.md
 		WE-Markdown.css = WE-Markdown.css
 		WE-Palette.css = WE-Palette.css
 		WebEssentials2015-Settings.json = WebEssentials2015-Settings.json
 	EndProjectSection
 EndProject
-Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "WebSocketsDemo", "WebSocketsDemo\WebSocketsDemo.xproj", "{91CE83EE-CD39-4A54-8C9C-1F288DAA9B40}"
+Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "Demo", "Demo\Demo.xproj", "{91CE83EE-CD39-4A54-8C9C-1F288DAA9B40}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ws", "ws", "{55B7D989-F485-49A5-AD4B-6B9184053FC7}"
 EndProject
@@ -56,7 +58,6 @@ Global
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
-		{91CE83EE-CD39-4A54-8C9C-1F288DAA9B40} = {3495116E-F01A-4F12-8653-95F79DCCFB64}
 		{9E31E252-A80A-4C61-8387-1F762CDA47A5} = {55B7D989-F485-49A5-AD4B-6B9184053FC7}
 		{F314A1CA-741E-44ED-A442-34DD71F3DA99} = {081EAF4B-276F-4B55-BF17-212C90965263}
 		{67A4C76B-29F4-45C0-A7B1-997BCE470A26} = {55B7D989-F485-49A5-AD4B-6B9184053FC7}
