@@ -1,5 +1,5 @@
 {
-    "projects": [ "src", "test", "../AsyncEx/Source", "../AsyncEx/Source/Enlightenment", ".", "../WebSockets/src" ],
+    "projects": [ "." ],
     "sdk": {
         "version": "1.0.0-beta4"
     }

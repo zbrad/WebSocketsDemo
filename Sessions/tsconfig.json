@@ -1,0 +1,19 @@
+{
+    "compilerOptions": {
+        "module": "commonjs",
+        "noImplicitAny": true,
+        "noEmitOnError": true,
+        "removeComments": false,
+        "sourceMap": true,
+        "declaration": true,
+        "target": "es5",
+        "listFiles": true,
+        "diagnostics": true,
+        "outDir": "./lib"
+    },
+    "files": [
+        "ts/Sessions.ts",
+        "ts/SessionFactory.ts",
+        "ts/SessionImplementation.ts"
+    ]
+}

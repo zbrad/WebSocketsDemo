@@ -5,6 +5,8 @@
 *.suo
 *.user
 *.sln.docstates
+.vs/
+*.lock.json
 
 # Build results
 [Dd]ebug/
@@ -15,6 +17,7 @@ build/
 bld/
 [Bb]in/
 [Oo]bj/
+[Aa]rtifacts/
 
 # Roslyn cache directories
 *.ide/
@@ -130,6 +133,9 @@ publish/
 
 # NuGet Packages Directory
 packages/*
+
+**/packages/*
+
 ## TODO: If the tool you use requires repositories.config
 ## uncomment the next line
 #!packages/repositories.config
@@ -188,3 +194,13 @@ FakesAssemblies/
 GeneratedArtifacts/
 _Pvt_Extensions/
 ModelManifest.xml
+
+# new files (for 2015RC)
+launchSettings.json
+debugSettings.json
+
+# exclude emacs files
+*~
+\#*#
+.\#*
+

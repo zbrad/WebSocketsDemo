@@ -15,8 +15,5 @@
     <SchemaVersion>2.0</SchemaVersion>
     <GruntGulpQueried>True</GruntGulpQueried>
   </PropertyGroup>
-  <PropertyGroup>
-  <TypeScriptCompileOnSaveEnabled>True</TypeScriptCompileOnSaveEnabled>
-  </PropertyGroup>
   <Import Project="$(VSToolsPath)\DNX\Microsoft.DNX.targets" Condition="'$(VSToolsPath)' != ''" />
 </Project>

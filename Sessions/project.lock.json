@@ -10,7 +10,8 @@
       "Newtonsoft.Json >= 7.0.1-beta3",
       "Nito.AsyncEx >= 3.0.1-pre",
       "Microsoft.AspNet.Http.Core >= 1.0.0-beta4",
-      "Microsoft.AspNet.Mvc >= 6.0.0-beta4"
+      "Microsoft.AspNet.Mvc >= 6.0.0-beta4",
+      "Messages >= 1.0.0-*"
     ],
     "DNX,Version=v4.5.1": []
   },

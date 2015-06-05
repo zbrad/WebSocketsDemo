@@ -1,0 +1,21 @@
+﻿{
+    "version": "1.0.0-*",
+    "description": "Message descriptions for C# and Typescript",
+    "authors": [ "Brad Merrill" ],
+    "tags": [ "" ],
+    "projectUrl": "",
+    "licenseUrl": "",
+
+    "dependencies": {
+        "Newtonsoft.Json": "7.0.1-beta3"
+    },
+    "contentFiles": [
+        "lib/Messages.d.ts",
+        "lib/Messages.js"
+    ],
+
+  "frameworks" : {
+    "dnx451": { }
+    }
+  }
+}

@@ -5,24 +5,17 @@
     "tags": [ "" ],
     "projectUrl": "",
     "licenseUrl": "",
-
     "dependencies": {
-
-        // framework
         "Microsoft.Framework.ConfigurationModel": "1.0.0-beta4",
         "Microsoft.Framework.DependencyInjection": "1.0.0-beta4",
-
-        // websockets
         "Microsoft.AspNet.WebSockets.Server": "1.0.0-beta4",
         "Microsoft.AspNet.WebSockets.Client": "1.0.0-beta4",
-
-        // json
         "Newtonsoft.Json": "7.0.1-beta3",
         "Nito.AsyncEx": "3.0.1-pre",
         "Microsoft.AspNet.Http.Core": "1.0.0-beta4",
-        "Microsoft.AspNet.Mvc": "6.0.0-beta4"
+        "Microsoft.AspNet.Mvc": "6.0.0-beta4",
+        "Messages": "1.0.0-*"
     },
-
     "frameworks": {
         "dnx451": { }
     }

@@ -1,0 +1,6 @@
+﻿{
+    "source": "./ts",
+    "outputPath": "./lib",
+    "typings": "./typings",
+    "allRef": "all.d.ts"
+}

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Sessions;
-using Sessions.Messages;
+using Messages;
 using Microsoft.Framework.ConfigurationModel;
 using Microsoft.Framework.ConfigurationModel.Json;
 using Microsoft.Framework.DependencyInjection;
@@ -34,7 +34,7 @@ namespace PubSubConsole
             var session = provider.GetService<IClientSession>();
             session.ReceiveEvent += Session_ReceiveEvent;
 
-            bool result = await session.TryConnectAsync(new Uri("ws://localhost:57985/session"), CancellationToken.None);
+            bool result = await session.TryConnectAsync("ws://localhost:57985/session", CancellationToken.None);
             if (result)
             {
                 var m = new GetSubscriptions();
