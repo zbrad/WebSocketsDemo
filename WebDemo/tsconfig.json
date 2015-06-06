@@ -1,0 +1,15 @@
+{
+    "compilerOptions": {
+        "module": "amd",
+        "noImplicitAny": true,
+        "noEmitOnError": true,
+        "removeComments": false,
+        "sourceMap": true,
+        "declaration": false,
+        "target": "es5",
+        "listFiles": true,
+        "diagnostics": true,
+        "outDir": "./wwwroot/lib",
+        "out": "./wwwroot/lib/webdemo.js"
+    }
+}

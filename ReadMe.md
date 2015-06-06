@@ -3,10 +3,28 @@ but I wanted to snapshot the current progress.
 
 nuget packages:
 
-        "jquery.TypeScript.DefinitelyTyped"
-        "angularjs.TypeScript.DefinitelyTyped"
-        "AngularJS.Core"
-        "AngularJS.Route"
+        install-package AngularJS.Core
+        install-package AngularJS.Route
+
+global npm packages:
+
+        npm install gulp         -g
+        npm install tsd          -g
+
+local npm packages:
+
+        npm install gulp         --save-dev
+        npm install tsd          --save-dev
+        npm install del          --save-dev
+        npm install gulp-inject  --save-dev
+        npm install gulp-jshint  --save-dev
+        npm install gulp-concat  --save-dev
+        npm install gulp-uglify  --save-dev
+        npm install gulp-rename  --save-dev
+        npm install gulp-run     --save-dev
+
+
+
 
 setup typings:
 
@@ -20,15 +38,5 @@ rather than a shared solution (or multi-project one).
 For each project:
 
 setup gulp:
-
-        npm install gulp -g --save-dev
-        npm install del --save-dev
-        npm install gulp-inject --save-dev
-        npm install gulp-jshint --save-dev
-        npm install gulp-concat --save-dev
-        npm install gulp-uglify --save-dev
-        npm install gulp-rename --save-dev
-        npm install gulp-run --save-dev
-
 
 

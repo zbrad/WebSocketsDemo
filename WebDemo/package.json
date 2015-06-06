@@ -1,0 +1,20 @@
+{
+  "name": "WebDemo",
+  "version": "1.0.0",
+  "author": "Brad Merrill",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/zbrad/WebSocketsDemo"
+  },
+  "readme": "https://github.com/zbrad/WebSocketsDemo/ReadMe.md",
+  "devDependencies": {
+    "del": "^1.2.0",
+    "gulp": "^3.9.0",
+    "gulp-concat": "^2.5.2",
+    "gulp-inject": "^1.2.0",
+    "gulp-jshint": "^1.11.0",
+    "gulp-rename": "^1.2.2",
+    "gulp-run": "^1.6.8",
+    "gulp-uglify": "^1.2.0"
+  }
+}
