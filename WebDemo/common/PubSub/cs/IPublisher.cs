@@ -15,5 +15,6 @@ namespace PubSub
     public interface IPublisherSession
     {
         Task WaitAsync(CancellationToken token);
+        Task WaitAsync();
     }
 }

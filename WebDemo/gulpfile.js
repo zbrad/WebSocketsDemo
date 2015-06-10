@@ -2,7 +2,8 @@
 
 var G = {
     project: require("./project.json"),
-    node: require("./package.json")
+    node: require("./package.json"),
+    tsconfig: require("./tsconfig.json")
 };
 
 for (var d in G.node.devDependencies) {
@@ -10,39 +11,129 @@ for (var d in G.node.devDependencies) {
     G[name] = require(d);
 }
 
+var gulp = G.gulp;
+
 var paths = {
-  bower: "./bower_components/",
-  lib: "./" + G.project.webroot + "/lib/",
-  ts: [
-        "**/**.ts",
-        "!./node_modules/**"
-        ] 
+    lib: "./" + G.project.webroot + "/lib/",
+    css: "./" + G.project.webroot + "/lib/css/",
+    scripts: "./" + G.project.webroot + "/lib/scripts/"
 };
 
-G.gulp.task("clean", function (cb) {
+gulp.task("clean", function (cb) {
   G.del(paths.lib, cb);
 });
 
-G.gulp.task("copy", ["clean"], function () {
-    var bower = {
-        "angular": "angular/angular*.{js,map}",
-        "angular-route": "angular-route/angular-route*.{js,map}",
-        "bootstrap": "bootstrap/dist/**/*.{js,map,css,ttf,svg,woff,eot}",
-        "bootstrap-touch-carousel": "bootstrap-touch-carousel/dist/**/*.{js,css}",
-        "hammer.js": "hammer.js/**/*.{js,map}",
-        "jquery": "jquery/dist/**/*.{js,map}",
-        "jquery-validation": "jquery-validation/dist/**/*.{js,map}",
-        "jquery-validation-unobtrusive": "jquery-validation-unobtrusive/*.{js,map}"
+gulp.task("copy-bower-min", [ 'clean' ], function () {
+    return gulp.src([
+        "./bower_components/**/*.min.js",
+        "./bower_components/**/*.min.css"
+    ], { base: "./bower_components/" }).pipe(gulp.dest(paths.lib));
+});
+
+gulp.task("copy-bower", ['clean'], function () {
+    var wd = G.wiredep();
+    var all = wd.css.concat(wd.js);
+    return gulp.src(all, { base: "./bower_components" }).pipe(gulp.dest(paths.lib));
+});
+
+gulp.task("copy-scripts", ['clean','tsc'], function () {
+    return gulp.src(["./client/**/*.js", "./common/**/*.js"], { base: "." })
+        .pipe(gulp.dest(paths.scripts));
+});
+
+gulp.task("copy-css", ['clean'], function () {
+    return gulp.src(["./client/**/*.css", "./common/**/*.css"], { base: "." })
+        .pipe(gulp.dest(paths.css));
+});
+
+gulp.task("copy", [ "copy-bower", "copy-bower-min", "copy-scripts" , "copy-css"], function () {
+    // xyz
+});
+
+gulp.task("tsc", function (cb) {
+    var exe = "C:\\Program Files (x86)\\Microsoft SDKs\\TypeScript\\1.5\\tsc.exe";
+    return G.run(exe).exec(cb);
+});
+
+function injectBower() {
+    var options = {
+        directory: "./bower_components",
+        ignorePath: "../../../bower_components/",
+        fileTypes: {
+            cshtml: {
+                block: /(([ \t]*)<!--\s*bower:*(\S*)\s*-->)(\n|\r|.)*?(<!--\s*endbower\s*-->)/gi,
+                detect: {
+                    js: /<script.*src=['"]([^'"]+)/gi,
+                    css: /<link.*href=['"]([^'"]+)/gi
+                },
+                replace: {
+                    js: '<script src="lib/{{filePath}}"></script>',
+                    css: '<link rel="stylesheet" href="lib/{{filePath}}" />'
+                }
+            }
+        }
     };
 
-    for (var d in bower) {
-        G.gulp.src(paths.bower + bower[d])
-          .pipe(G.gulp.dest(paths.lib + d));
-    }
+    return G.wiredep.stream(options);
+};
+
+function injectJs() {
+    return G.inject(
+            gulp.src([
+                        './client/**/*.js', './common/**/*.js'
+            ], { base: "." })
+                .pipe(G.filesort()),
+            {
+                addRootSlash: false,
+                transform: function (f) { return '<script src="lib/scripts/' + f + '"></script>'; }
+            });
+};
+
+function injectCss() {
+    return G.inject(
+            gulp.src([
+                './client/**/*.css', './common/**/*.css',
+            ], { read: false, base: "." }),
+            {
+                addRootSlash: false,
+                transform: function (f) { return '<link rel="stylesheet" href="lib/css/' + f + '" />'; }
+            });
+};
+
+
+gulp.task('update-layout', ['tsc'], function () {
+    var file = "server/Views/Shared/_Layout.cshtml";
+    return gulp.src(file, { base: "." })
+        .pipe(injectBower())
+        .pipe(injectJs())
+        .pipe(injectCss())
+        .pipe(gulp.dest(paths.lib));
 });
 
-G.gulp.task("tsc", ["copy"], function (cb) {
-    return G.run("tsc").exec(cb);
+gulp.task("build", ['copy', 'update-layout'], function () {
+    // xyz
 });
 
 
+gulp.task('test-wiredep', function () {
+    var file = "./**/_Layout.cshtml";
+    return gulp.src(file, { base: "." })
+        .pipe(injectBower())
+        .pipe(gulp.dest(paths.lib));
+});
+
+gulp.task('test-sort', function () {
+    var file = "./**/_Layout.cshtml";
+    return gulp.src(file, { base: "." })
+        .pipe(G.inject(
+            gulp.src([
+                './client/**/*.js', './common/**/*.js'
+            ], { base: "." })
+                .pipe(G.filesort()
+            ),
+        {
+            addRootSlash: false,
+            transform: function (f) { return '<script src="lib/scripts/' + f + '"></script>'; }
+        }))
+        .pipe(gulp.dest(paths.lib));
+});

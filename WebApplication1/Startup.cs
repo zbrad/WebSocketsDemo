@@ -11,9 +11,8 @@ using Microsoft.Framework.ConfigurationModel;
 using Microsoft.Framework.DependencyInjection;
 using Microsoft.Framework.Logging;
 using Microsoft.Framework.Logging.Console;
-using PubSub;
 
-namespace WebDemo
+namespace WebApplication1
 {
     public class Startup
     {
@@ -35,8 +34,10 @@ namespace WebDemo
             // Add MVC services to the services container.
             services.AddMvc();
 
-            services.AddWebApiConventions();
-            services.AddPublisher();
+            // Uncomment the following line to add Web API services which makes it easier to port Web API 2 controllers.
+            // You will also need to add the Microsoft.AspNet.Mvc.WebApiCompatShim package to the 'dependencies' section of project.json.
+            // services.AddWebApiConventions();
+
         }
 
         // Configure is called after ConfigureServices is called.

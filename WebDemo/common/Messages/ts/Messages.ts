@@ -2,7 +2,7 @@
 
     export interface IMessage {
         $type?: string;
-        Type: string;
+        Type: string; 
     }
 
     export interface IError extends IMessage {

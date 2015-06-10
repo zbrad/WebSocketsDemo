@@ -21,5 +21,11 @@ namespace PubSub
         {
             await session.WaitAsync(token);
         }
+
+        public Task WaitAsync()
+        {
+            return this.WaitAsync(CancellationToken.None);
+        }
+
     }
 }
