@@ -11,7 +11,7 @@ using Microsoft.Framework.ConfigurationModel;
 using Microsoft.Framework.DependencyInjection;
 using Microsoft.Framework.Logging;
 using Microsoft.Framework.Logging.Console;
-using Sessions;
+using SessionLib;
 using Microsoft.AspNet.WebSockets.Server;
 
 namespace TestMonitorWeb

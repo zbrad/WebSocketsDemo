@@ -1,6 +1,6 @@
 ﻿using System.Threading.Tasks;
 using Microsoft.AspNet.Mvc;
-using Sessions;
+using SessionLib;
 using Microsoft.AspNet.Hosting;
 using Microsoft.AspNet.Http;
 using System.Net.WebSockets;
@@ -35,7 +35,7 @@ namespace TestMonitorWeb.Controllers
             this.session.OnReceive += Session_OnReceive;
         }
 
-        private async Task Session_OnReceive(Sessions.ISession session, ArraySegment<byte> m)
+        private async Task Session_OnReceive(SessionLib.ISession session, ArraySegment<byte> m)
         {
             var message = UTF8Encoding.UTF8.GetString(m.Array, 0, m.Count);
             Console.WriteLine("Received message: " + message);

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Sessions;
+using SessionLib;
 using Microsoft.Framework.ConfigurationModel;
 using Microsoft.Framework.DependencyInjection;
 using System.Threading;
@@ -30,7 +30,7 @@ namespace MonitorTest
             RunConnected();
         }
 
-        static string linePat = @"(?<command>[supe])\w*\s*(?<topic>\w+)?\s*(?<content>.*$)?";
+        static string linePat = @"(?<command>[se])\w*\s*(?<content>.*$)?";
         static System.Text.RegularExpressions.Regex lineRegex = new System.Text.RegularExpressions.Regex(linePat);
         static string defaultEndpoint = "ws://localhost:57762/ws";
 
@@ -91,7 +91,8 @@ Options:
                 {
                     case "s":
                         {
-                            var bytes = UTF8Encoding.UTF8.GetBytes(m.Groups["topic"].Value);
+                            var content = m.Groups["content"].Value;
+                            var bytes = UTF8Encoding.UTF8.GetBytes(content);
                             var seg = new ArraySegment<byte>(bytes);
                             this.Session.SendAsync(seg);
                             break;
