@@ -16,6 +16,8 @@ Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "MessageClient", "MessageCli
 EndProject
 Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "SharedMessages", "SharedMessages\SharedMessages.xproj", "{2A2C481A-378C-45D6-AFF3-6A68A9407528}"
 EndProject
+Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "MessageServer", "MessageServer\MessageServer.xproj", "{26E0AFE5-3AF4-4CD5-968C-4CF562EECCC7}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -38,6 +40,10 @@ Global
 		{2A2C481A-378C-45D6-AFF3-6A68A9407528}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2A2C481A-378C-45D6-AFF3-6A68A9407528}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2A2C481A-378C-45D6-AFF3-6A68A9407528}.Release|Any CPU.Build.0 = Release|Any CPU
+		{26E0AFE5-3AF4-4CD5-968C-4CF562EECCC7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{26E0AFE5-3AF4-4CD5-968C-4CF562EECCC7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{26E0AFE5-3AF4-4CD5-968C-4CF562EECCC7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{26E0AFE5-3AF4-4CD5-968C-4CF562EECCC7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

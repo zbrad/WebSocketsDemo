@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNet.Mvc;
 
-namespace TestMonitorWeb.Controllers
+namespace MessageTest.Controllers
 {
     public class HomeController : Controller
     {

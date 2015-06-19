@@ -9,7 +9,8 @@
     "dependencies": {
         "Microsoft.Framework.ConfigurationModel": "1.0.0-beta4",
         "Microsoft.Framework.DependencyInjection": "1.0.0-beta4",
-        "MessageLib": "1.0.0-*"
+        "MessageLib": "1.0.0-*",
+        "SharedMessages": "1.0.0-*"
     },
 
     "commands": {

@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.Framework.ConfigurationModel;
 using Microsoft.Framework.DependencyInjection;
 using MessageLib;
+using SharedMessages;
 
 namespace MonitorTest
 {
@@ -28,7 +29,7 @@ namespace MonitorTest
             RunConnected();
         }
 
-        static string linePat = @"(?<command>[supe])\w*\s*(?<topic>\w+)?\s*(?<content>.*$)?";
+        static string linePat = @"(?<command>[se])\w*\s*(?<content>.*$)?";
         static System.Text.RegularExpressions.Regex lineRegex = new System.Text.RegularExpressions.Regex(linePat);
         static string defaultEndpoint = "ws://localhost:57762/ws";
 
@@ -62,7 +63,17 @@ namespace MonitorTest
 
         private Task Messenger_OnMessage(IMessenger messenger, Message m)
         {
-            
+            if (m is EchoResponse)
+            {
+                var response = (EchoResponse)m;
+                Console.WriteLine("Received Echo Response, Text=" + response.Text);
+            }
+            else
+            {
+                Console.WriteLine("Unknown message, type=" + m.GetType());
+            }
+
+            return Task.FromResult<bool>(true);
         }
 
         private Task Session_OnReceive(IMessenger session, ArraySegment<byte> m)
@@ -94,9 +105,9 @@ Options:
                 {
                     case "s":
                         {
-                            var bytes = UTF8Encoding.UTF8.GetBytes(m.Groups["topic"].Value);
-                            var seg = new ArraySegment<byte>(bytes);
-                            this.Messenger.SendAsync(seg);
+                            var text = m.Groups["content"].Value;
+                            var request = new EchoRequest(text);
+                            this.Messenger.SendAsync(request);
                             break;
                         }
                     case "e":

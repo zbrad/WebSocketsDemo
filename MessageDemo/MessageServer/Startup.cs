@@ -11,10 +11,10 @@ using Microsoft.Framework.ConfigurationModel;
 using Microsoft.Framework.DependencyInjection;
 using Microsoft.Framework.Logging;
 using Microsoft.Framework.Logging.Console;
-using Sessions;
+using MessageLib;
 using Microsoft.AspNet.WebSockets.Server;
 
-namespace TestMonitorWeb
+namespace MessageTest
 {
     public class Startup
     {
@@ -35,7 +35,7 @@ namespace TestMonitorWeb
             services.AddMvc();
 
             // add sessions
-            services.AddSessions();
+            services.AddMessages();
         }
 
         // Configure is called after ConfigureServices is called.
@@ -63,10 +63,6 @@ namespace TestMonitorWeb
             app.UseStaticFiles();
 
             app.UseWebSockets(new WebSocketOptions { ReplaceFeature = true });
-            //app.Map("/ws", m =>
-            //{
-            //    m.UseWebSockets(new WebSocketOptions { ReplaceFeature = true });
-            //});
 
             app.UseMvc(routes =>
             {
