@@ -1,0 +1,22 @@
+{
+  "version": "1.0.0-*",
+  "description": "",
+  "authors": [ "" ],
+  "tags": [ "" ],
+  "projectUrl": "",
+  "licenseUrl": "",
+
+  "dependencies": {
+    "Microsoft.Framework.ConfigurationModel": "1.0.0-beta4",
+    "Microsoft.Framework.DependencyInjection": "1.0.0-beta4",
+    "SessionLib": "1.0.0-*"
+  },
+
+  "commands": {
+    "SessionClient" : "SessionClient"
+  },
+
+  "frameworks": {
+    "dnx451": { }
+  }
+}
