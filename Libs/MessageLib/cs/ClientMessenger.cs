@@ -6,11 +6,10 @@ namespace MessageLib
     internal sealed class ClientMessenger : Messenger, IClientMessenger
     {
 
-        public string Endpoint { get; private set; }
+        public string Endpoint { get { return ((IClientSession)this.Session).Endpoint; } }
 
-        public ClientMessenger(IMessengerFactory factory, IClientSession session, string endpoint) : base(factory, session)
+        public ClientMessenger(IMessengerFactory factory, IClientSession session) : base(factory, session)
         {
-            this.Endpoint = endpoint;            
         }
     }
 }

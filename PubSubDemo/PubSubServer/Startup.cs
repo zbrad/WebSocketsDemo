@@ -11,10 +11,9 @@ using Microsoft.Framework.ConfigurationModel;
 using Microsoft.Framework.DependencyInjection;
 using Microsoft.Framework.Logging;
 using Microsoft.Framework.Logging.Console;
-using MessageLib;
-using Microsoft.AspNet.WebSockets.Server;
+using PubSubLib;
 
-namespace MessageServer
+namespace PubSubServer
 {
     public class Startup
     {
@@ -32,10 +31,15 @@ namespace MessageServer
         public void ConfigureServices(IServiceCollection services)
         {
             services.Configure<AppSettings>(Configuration.GetSubKey("AppSettings"));
+
+            // Add MVC services to the services container.
             services.AddMvc();
 
-            // add messages
-            services.AddMessages();
+            // Uncomment the following line to add Web API services which makes it easier to port Web API 2 controllers.
+            // You will also need to add the Microsoft.AspNet.Mvc.WebApiCompatShim package to the 'dependencies' section of project.json.
+            // services.AddWebApiConventions();
+
+            services.AddPublisher();
         }
 
         // Configure is called after ConfigureServices is called.
@@ -62,15 +66,18 @@ namespace MessageServer
             // Add static files to the request pipeline.
             app.UseStaticFiles();
 
-            app.UseWebSockets(new WebSocketOptions { ReplaceFeature = true });
-
+            // Add MVC to the request pipeline.
             app.UseMvc(routes =>
             {
                 routes.MapRoute(
                     name: "default",
                     template: "{controller=Home}/{action=Index}/{id?}");
+
+                // Uncomment the following line to add a route for porting Web API 2 controllers.
+                // routes.MapWebApiRoute("DefaultApi", "api/{controller}/{id?}");
             });
 
+            app.UseWebSockets(new Microsoft.AspNet.WebSockets.Server.WebSocketOptions { ReplaceFeature = true });
         }
     }
 }

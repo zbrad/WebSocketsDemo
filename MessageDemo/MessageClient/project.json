@@ -14,7 +14,7 @@
     },
 
     "commands": {
-        "SessionClient": "SessionClient"
+        "MessageClient": "MessageClient"
     },
 
     "frameworks": {

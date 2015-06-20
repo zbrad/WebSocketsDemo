@@ -24,7 +24,7 @@ namespace MessageLib
             var session = await this.Factory.ConnectAsync(endpoint, token);
             if (session == null)
                 return null;
-            return new ClientMessenger(this, session, endpoint);
+            return new ClientMessenger(this, session);
         }
 
         public async Task SendAsync(Message m, List<IMessenger> list)

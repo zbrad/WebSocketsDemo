@@ -11,10 +11,11 @@ namespace MessageLib
     public interface IMessenger : IDisposable
     {
         event MessageHandler OnMessage;
+        string Id { get; }
+        bool IsClosed { get; }
         Task WaitAsync();
         Task SendAsync(Message m);
         Task SendAsync(Message m, CancellationToken token);
-        bool IsClosed { get; }
         Task CloseAsync();
     }
 

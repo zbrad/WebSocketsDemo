@@ -10,15 +10,15 @@ namespace SessionLib
 
     public interface ISession : IDisposable
     {
-        string Id { get; }
         event SessionHandler OnReceive;
+        string Id { get; }
+        bool IsClosed { get; }
+        string CloseStatus { get; }
+        string CloseDescription { get; }
         Task WaitAsync();
         Task SendAsync(ArraySegment<byte> m);
         Task SendAsync(ArraySegment<byte> m, CancellationToken token);
-        bool IsClosed { get; }
         Task CloseAsync();
-        string CloseStatus { get; }
-        string CloseDescription { get; }
     }
 
     public interface IServerSession : ISession

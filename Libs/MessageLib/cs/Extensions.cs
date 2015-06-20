@@ -8,6 +8,7 @@ namespace MessageLib
         public static void AddMessages(this IServiceCollection services)
         {
             services.AddSessions();
+            services.AddSingleton<IMessengerFactory, MessengerFactory>();
             services.AddTransient<IServerMessenger, ServerMessenger>();
         }
     }

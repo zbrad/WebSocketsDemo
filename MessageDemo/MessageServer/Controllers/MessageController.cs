@@ -1,6 +1,7 @@
 ﻿using System.Threading.Tasks;
 using Microsoft.AspNet.Mvc;
 using MessageLib;
+using SessionLib;
 using Microsoft.AspNet.Hosting;
 using Microsoft.AspNet.Http;
 using System.Net.WebSockets;
@@ -8,7 +9,7 @@ using System;
 using System.Text;
 using SharedMessages;
 
-namespace MessageTest.Controllers
+namespace MessageServer.Controllers
 {
     class MessageWaiter : IActionResult
     {

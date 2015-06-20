@@ -10,7 +10,8 @@ namespace MessageLib
         public event MessageHandler OnMessage;
 
         public ISession Session { get; private set; }
-        public bool IsClosed { get; private set; }
+        public string Id { get { return this.Session.Id; } }
+        public bool IsClosed { get { return this.Session.IsClosed; } }
         public Exception LastException { get; protected set; }
         public MessengerFactory Factory { get; private set; }
 

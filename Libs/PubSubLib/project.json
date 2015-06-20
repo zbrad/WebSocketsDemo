@@ -1,0 +1,17 @@
+{
+    "version": "1.0.0-*",
+    "description": "",
+    "authors": [ "" ],
+    "tags": [ "" ],
+    "projectUrl": "",
+    "licenseUrl": "",
+
+    "dependencies": {
+        "SessionLib": "1.0.0-*",
+        "MessageLib": "1.0.0-*"
+    },
+
+    "frameworks": {
+        "dnx451": { }
+    }
+} }
