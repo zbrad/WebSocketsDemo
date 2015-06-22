@@ -7,7 +7,12 @@
     "licenseUrl": "",
 
     "dependencies": {
-        "MessageLib": "1.0.0-*"
+        "PubSubLib": "1.0.0-*",
+        "ClientUtil": "1.0.0-*"
+    },
+
+    "commands": {
+        "PubFooBar": "PubFooBar"
     },
 
     "frameworks": {

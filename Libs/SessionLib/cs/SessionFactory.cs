@@ -1,13 +1,8 @@
 ﻿using System;
 using System.Collections.Concurrent;
-using System.Net.WebSockets;
 using System.Collections.Generic;
-using Microsoft.Framework.ConfigurationModel;
-using Nito.AsyncEx;
 using System.Threading;
 using System.Threading.Tasks;
-using H = Microsoft.AspNet.Http;
-using Microsoft.AspNet.WebSockets.Server;
 using Microsoft.AspNet.WebSockets.Client;
 
 namespace SessionLib
@@ -25,6 +20,11 @@ namespace SessionLib
         public SessionFactory()
         {
             this.BufferSize = DefaultBufferSize;
+        }
+
+        public Task<IClientSession> ConnectAsync(string endpoint)
+        {
+            return this.ConnectAsync(endpoint);
         }
 
         public async Task<IClientSession> ConnectAsync(string endpoint, CancellationToken token)

@@ -3,6 +3,7 @@ using System.Threading.Tasks;
 using System;
 using Microsoft.AspNet.Mvc;
 using MessageLib;
+using PubSubLib.Messages;
 
 namespace PubSubLib
 {
@@ -38,6 +39,7 @@ namespace PubSubLib
         public async Task PublishAsync(string topic, string content)
         {
             var u = new TopicUpdate(topic, content);
+            u.Publisher = this.Messenger.Id;
             await this.Messenger.SendAsync(u);
         }        
 
@@ -55,13 +57,13 @@ namespace PubSubLib
 
         public async Task GetTopicsAsync()
         {
-            var t = new Topics();
+            var t = new GetTopics();
             await this.Messenger.SendAsync(t);
         }
 
         public async Task GetSubscriptionsAsync()
         {
-            var s = new Subscriptions();
+            var s = new GetSubscriptions();
             await this.Messenger.SendAsync(s);
         }
     }

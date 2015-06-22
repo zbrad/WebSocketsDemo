@@ -1,46 +1,30 @@
 ﻿module WebDemo {
 
-    export interface ISubscribe extends IMessage {
-        Topic: string;
-    }
+    export class Subscribe extends Message {
+			Topic: string;
+	}
 
-    export class Subscribe extends Message implements ISubscribe {
-        Topic: string;
-    }
+    export class Unsubscribe extends Message { 
+			Topic: string;
+	}
 
-    export interface IUnsubscribe extends IMessage {
-        Topic: string;
-    }
-
-    export class Unsubscribe extends Message implements IUnsubscribe {
-        Topic: string;
-    }
-
-    export interface ITopicUpdate extends IMessage {
+    export interface ITopicUpdate extends Message {
+		Topic: string;
         Publisher: string;
         Date: Date;
-        Topic: string;
         Content: string;
     }
 
-    export class TopicUpdate extends Message implements ITopicUpdate {
+    export class TopicUpdate extends TopicMessage implements ITopicUpdate {
+		Topic: string;
         Publisher: string;
-        Date: Date;
-        Topic: string;
         Content: string;
+        Date: Date;
     }
 
-    export interface IGetSubscriptions extends IMessage {
-    }
+	export class GetSubscriptions extends Message { }
 
-    export class GetSubscriptions extends Message implements IGetSubscriptions {
-    }
-
-    export interface IGetTopics extends IMessage {
-    }
-
-    export class GetTopics extends Message implements IGetTopics  {
-    }
+    export class GetTopics extends Message { }
 
     export interface ISubscriptions extends IMessage {
         List: string[];

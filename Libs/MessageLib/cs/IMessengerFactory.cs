@@ -12,6 +12,8 @@ namespace MessageLib
     {
         Exception LastException { get; }
         Task SendAsync(Message m, List<IMessenger> list);
+        Task<IClientMessenger> ConnectAsync(string endpoint);
+
         Task<IClientMessenger> ConnectAsync(string endpoint, CancellationToken token);
     }
 }

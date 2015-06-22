@@ -11,6 +11,7 @@ namespace PubSubLib
 
     public interface IPublisherFactory
     {
+        Task<IClientSubscriber> ConnectAsync(string endpoint);
         Task<IClientSubscriber> ConnectAsync(string endpoint, CancellationToken token);
     }
 

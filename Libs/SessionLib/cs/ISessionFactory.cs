@@ -13,6 +13,7 @@ namespace SessionLib
         int BufferSize { get; set; }
         Exception LastException { get; }
         Task SendAsync(ArraySegment<byte> m, List<ISession> list);
+        Task<IClientSession> ConnectAsync(string endpoint);
         Task<IClientSession> ConnectAsync(string endpoint, CancellationToken token);
     }
 }

@@ -19,6 +19,11 @@ namespace MessageLib
             this.Factory = factory;
         }
 
+        public Task<IClientMessenger> ConnectAsync(string endpoint)
+        {
+            return this.ConnectAsync(endpoint, CancellationToken.None);
+        }
+
         public async Task<IClientMessenger> ConnectAsync(string endpoint, CancellationToken token)
         {
             var session = await this.Factory.ConnectAsync(endpoint, token);

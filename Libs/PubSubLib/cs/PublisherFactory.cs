@@ -6,6 +6,7 @@ using System.Collections.Concurrent;
 using Nito.AsyncEx;
 using MessageLib;
 using System.Threading;
+using PubSubLib.Messages;
 
 namespace PubSubLib
 {
@@ -24,6 +25,11 @@ namespace PubSubLib
         {
             this.factory = factory;
             senderTask = Task.Run(Sender);
+        }
+
+        public Task<IClientSubscriber> ConnectAsync(string endpoint)
+        {
+            return this.ConnectAsync(endpoint, CancellationToken.None);
         }
 
         public async Task<IClientSubscriber> ConnectAsync(string endpoint, CancellationToken token)
@@ -102,9 +108,9 @@ namespace PubSubLib
 
         async Task GetSubscriptions(IMessenger messenger)
         {
-            List<string> list;
-            if (!perMessengerSubs.TryGetValue(messenger, out list))
-                list = new List<string>();
+            List<string> list = new List<string>();
+            foreach (var m in perMessengerSubs.Keys)
+                list.Add(m.Id);
             var response = new Subscriptions(list);
             await messenger.SendAsync(response);
         }
