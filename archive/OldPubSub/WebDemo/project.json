@@ -1,0 +1,52 @@
+{
+    "webroot": "wwwroot",
+    "version": "1.0.0-*",
+
+  "dependencies": {
+    "Microsoft.Framework.ConfigurationModel.Json": "1.0.0-beta4",
+    "AngularJS.Core": "1.5.7",
+    "AngularJS.Route": "1.5.7",
+    "angularjs.TypeScript.DefinitelyTyped": "6.2.9",
+    "jquery.TypeScript.DefinitelyTyped": "3.0.9",
+    "Microsoft.AspNet.Diagnostics": "1.0.0-rc1-final",
+    "Microsoft.AspNet.Http": "1.0.0-rc1-final",
+    "Microsoft.AspNet.Http.Extensions": "1.0.0-rc1-final",
+    "Microsoft.AspNet.Mvc": "6.0.0-rc1-final",
+    "Microsoft.AspNet.Mvc.TagHelpers": "6.0.0-rc1-final",
+    "Microsoft.AspNet.Mvc.WebApiCompatShim": "6.0.0-rc1-final",
+    "Microsoft.AspNet.Server.IIS": "1.0.0-beta7",
+    "Microsoft.AspNet.Server.WebListener": "1.0.0-rc1-final",
+    "Microsoft.AspNet.StaticFiles": "1.0.0-rc1-final",
+    "Microsoft.AspNet.Tooling.Razor": "1.0.0-rc1-final",
+    "Microsoft.AspNet.WebSockets.Client": "1.0.0-rc1-final",
+    "Microsoft.AspNet.WebSockets.Server": "1.0.0-rc1-final",
+    "Microsoft.Framework.CodeGenerators.Mvc": "1.0.0-beta5",
+    "Microsoft.Framework.DependencyInjection": "1.0.0-beta8",
+    "Microsoft.Framework.Logging": "1.0.0-beta8",
+    "Microsoft.Framework.Logging.Console": "1.0.0-beta8",
+    "Microsoft.VisualStudio.Web.BrowserLink.Loader": "14.0.0",
+    "Newtonsoft.Json": "9.0.1",
+    "Nito.AsyncEx": "3.0.1"
+  },
+
+  "frameworks": {
+    "dnx451": { }
+  },
+
+  "exclude": [
+    "wwwroot",
+    "node_modules",
+    "bower_components"
+  ],
+  "publishExclude": [
+    "node_modules",
+    "bower_components",
+    "**.xproj",
+    "**.user",
+    "**.vspscc"
+  ],
+  "scripts": {
+    "postrestore": [ "npm install", "bower install" ],
+    "prepare": [ "gulp copy" ]
+  }
+}

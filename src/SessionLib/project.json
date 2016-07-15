@@ -1,0 +1,28 @@
+{
+  "version": "1.0.0-*",
+  "description": "SessionLib Class Library",
+  "authors": [ "brad_" ],
+  "tags": [ "" ],
+  "projectUrl": "",
+  "licenseUrl": "",
+  "frameworks": {
+    "net451": {
+      "dependencies": {
+        "Microsoft.CSharp": "4.0.1",
+        "System.Collections": "4.0.11",
+        "System.Linq": "4.1.0",
+        "System.Runtime": "4.1.0",
+        "System.Threading": "4.0.11"
+      }
+    },
+    "dotnet5.4": {
+      "dependencies": {
+      }
+    }
+  },
+  "dependencies": {
+    "Microsoft.AspNetCore.WebSockets.Server": "0.1.0",
+    "Microsoft.Framework.Configuration": "1.0.0-beta8",
+    "Microsoft.Framework.DependencyInjection": "1.0.0-beta8"
+  }
+}

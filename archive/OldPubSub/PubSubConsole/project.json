@@ -1,0 +1,22 @@
+{
+    "version": "1.0.0-*",
+    "description": "",
+    "authors": [ "" ],
+    "tags": [ "" ],
+    "projectUrl": "",
+    "licenseUrl": "",
+
+  "dependencies": {
+    "Microsoft.Framework.ConfigurationModel.Json": "1.0.0-beta4",
+    "WebDemo": "1.0.0-*",
+    "Nito.AsyncEx": "3.0.1"
+  },
+
+    "commands": {
+        "PubSubConsole": "PubSubConsole"
+    },
+
+    "frameworks": {
+        "dnx451": { }
+    }
+}
