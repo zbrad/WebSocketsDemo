@@ -1,0 +1,93 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Websocket echo test</title>
+
+    <script type="text/javascript">
+        var host = window.location.host;
+        var wsUri = "ws://" + host + "/ws";
+
+        function doConnect() {
+            writeToScreen("connecting...");
+            websocket = new WebSocket(wsUri);
+            websocket.onopen = function (evt) { onOpen(evt) };
+            websocket.onclose = function (evt) { onClose(evt) };
+            websocket.onmessage = function (evt) { onMessage(evt) };
+            websocket.onerror = function (evt) { onError(evt) };
+        }
+
+        function doDisconnect() {
+            writeToScreen("disconnecting...");
+            websocket.close();
+        }
+
+        function onOpen(evt) {
+            writeToScreen("CONNECTED");
+        }
+
+        function onClose(evt) {
+            writeToScreen("DISCONNECTED");
+        }
+
+        function onMessage(evt) {
+            writeToScreen('<span style="color: blue;">RESPONSE: ' + evt.data + '</span>');
+        }
+
+        function onError(evt) {
+            writeToScreen('<span style="color: red;">ERROR:</span> ' + evt.data);
+        }
+
+        function doSend() {
+            var sendBox = document.getElementById("sendBox");
+            var value = sendBox.value;
+            writeToScreen("sending: " + value);
+            websocket.send(value);
+        }
+
+        function writeToScreen(message) {
+            var pre = document.createElement("p");
+            pre.style.wordWrap = "break-word";
+            pre.innerHTML = message;
+            var output = document.getElementById("consoleLog");
+            output.appendChild(pre);
+        }
+
+        function clearLog() {
+            var output = document.getElementById("consoleLog");
+            output.innerHTML = "";
+        }
+    </script>
+</head>
+<body>
+    <h2>Echo Test</h2>
+
+        <div style="float: left;">
+            <strong>Location:</strong><br>
+            <input id="wsUri" size="35">
+
+            <button onclick="doConnect();">Connect</button>
+            <button onclick="doDisconnect();">Disconnect</button>
+
+            <br>
+            <br>
+
+            <strong>Message:</strong><br>
+            <input id="sendBox" size="35" value="Send this to web socket">
+            <br>
+
+            <button onclick="doSend();">Send</button>
+        </div>
+
+        <div style="float: left; margin-left: 20px; padding-left: 20px; width: 350px; border-left: solid 1px #cccccc;">
+            <strong>Log:</strong>
+            <div id="consoleLog" style="overflow-y: scroll">&nbsp;</div>
+            <button onclick="clearLog();" style="position: relative; top: 3px;">Clear log</button>
+        </div>
+
+    <script language="javascript">
+        var uriInp = document.getElementById("wsUri");
+        uriInp.value = wsUri;
+    </script>
+</body>
+</html>
